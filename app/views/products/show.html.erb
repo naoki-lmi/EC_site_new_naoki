@@ -1,0 +1,22 @@
+
+<div class="col-md-5">
+    <%= link_to image_tag("image1.jpeg", class:"img-rounded",size:'400x400' ),
+                                             "/products/#{@product.id}" %>
+</div>
+
+<div class="col-md-4">
+    商品名：<%= @product.name %> <br>
+    値段：<%= @product.price %>円 <br>
+    サイズ：<%= @product.size.size %>  <br>
+    ブランド：<%= @product.brand.brand %> <br>
+    カテゴリ：<%= @product.category.category %> <br>
+    在庫：<%= @stock.stock %> <br>
+
+</div>
+
+
+<div class="col-md-3">
+    <%= button_to "買い物カゴに入れる", "#" %><br>
+    <%= link_to "お気に入り", cart_items_path(product_id: @product.id) %>
+
+</div>

@@ -1,0 +1,33 @@
+<% provide(:title, @user.name) %>
+<style>
+ .col-md-offset-4{
+                border: 1px solid black;
+}
+</style>
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h2>お客様情報</h2>
+        <table>
+        <tr>
+        <td>お名前:</td>
+        <td><%= @user.name %></td>
+        </tr>
+        <tr>
+        <td>メールアドレス:</td>
+        <td><%= @user.name %></td>
+        </tr>
+        <tr>
+        <td>住所:</td>
+        <td><%= @user.address %></td>
+        </tr>
+        </table>
+    </div>
+    <div class="col-md-4 text-center">
+    <%= link_to "変更", edit_user_path %><br>
+    <%= link_to "登録解除", @user, method: :delete,  data: { confirm: "登録情報を削除しますか？" } %>
+        
+    </div>
+
+</div>
