@@ -21,14 +21,12 @@
                <li>
                  <%= link_to "Log out", logout_path, method: :delete %>
                  <% if admin? %>
-                 <%= link_to "売り上げ", "#" %>
-                 <%= link_to "商品管理", "#" %>
+                 <%= link_to "売り上げ", orders_path %>
                  <% end %>
                </li>
              </ul>
            </li>
-           <li><%= link_to "お気に入り", "#" %></li>
-           <li><%= link_to "買い物かご", "#" %></li>
+           <li><%= link_to "買い物かご", cart_items_path %></li>
            
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

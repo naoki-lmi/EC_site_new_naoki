@@ -1,9 +1,9 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: myecsite_development
+  database: naoki_ecsite_development
   pool: 5
-  username: myecsite
+  username: ecsite
   password: Na0k1o428!
   socket: /var/lib/mysql/mysql.sock
 
@@ -14,9 +14,9 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: myecsite_test
+  database: naoki_ecsite_test
   pool: 5
-  username: myecsite
+  username: ecsite
   password: Na0k1o428!
   socket: /var/lib/mysql/mysql.sock
 
@@ -42,8 +42,8 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: myecsite_production
+  database: naoki_ecsite_production
   pool: 5
-  username: myecsite
+  username: ecsite
   password: Na0k1o428!
   socket: /var/lib/mysql/mysql.sock

@@ -1,16 +1,28 @@
-
-<%= form_tag(root_path, :method => 'get' ) do %>
+<form action="/" method="get">
+    <select name="conditions" >
+        <option value="">選択して下さい</option>
+        <option value="name">名前</option>
+        <option value="brand">ブランド</option>
+        <option value="category">カテゴリ</option>
+    </select>
+    
     <%= text_field_tag :search %>
     <%= submit_tag 'Search', :name => nil %>
-<% end %>
-
+    </form>
+<% if @products.empty? %>
+    <h3>検索結果なし</h3>
+    <h3>>><%= link_to "ホームに戻る", root_path %></h3>
+<% else %>
 <% @products.each do |product| %>
 <div class="col-md-4">
 <%= link_to image_tag("image1.jpeg", class:"img-rounded",size: '250x250' ), "/products/#{product.id}" %>
 <br>
 商品名：<%= product.name %><br>
-サイズ：<%= product.size.size %>
+サイズ：<%= product.size.size %><br>
+カテゴリ：<%= product.category.category %><br>
+ブランド：<%= product.brand.brand %><br>
 </div>
 <% end %>
 
 <%= will_paginate %>
+<% end %>

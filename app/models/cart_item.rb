@@ -1,6 +1,6 @@
 class CartItem < ApplicationRecord
-    belong_to :product
-    belong_to :cart
+    belongs_to :product
+    belongs_to :cart
 
 
 end

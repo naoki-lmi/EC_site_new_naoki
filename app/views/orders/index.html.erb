@@ -1,0 +1,49 @@
+
+
+<div class = "row">
+<div class="col-md-6">
+<h3>Total</h3>
+<%= @sum %>円
+</div>
+
+<div class="col-md-6">
+    <form action="/orders/" method="get">
+    <select name="year_month_value" onchange="submit(this.form)">
+        <option value="">---</option>
+        <option value="">total</option>
+        <option value="2019-09">2019/09</option>
+        <option value="2019-10">2019/10</option>
+        <option value="2019-11">2019/11</option>
+    </select>
+    </form>
+</div>
+
+</div>
+
+<div class = "row">
+<div class="col-md-6">
+<h3>ブランド別</h3>
+<table border="1">
+<% @brand_totals.each do |brand| %>
+    <tr>
+    <td><%= brand.brand %></td>
+    <td><%= brand.sum %>円</td>
+    </tr>
+<% end %>
+</table>
+</div>
+</div>
+
+<div class = "row">
+<div class="col-md-6">
+<h3>カテゴリ別</h3>
+<table border="1">
+<% @category_totals.each do |cate| %>
+    <tr>
+    <td><%= cate.category%></td>
+    <td><%= cate.sum%>円</td>
+    <tr>
+<% end %>
+</table>
+</div>
+</div>

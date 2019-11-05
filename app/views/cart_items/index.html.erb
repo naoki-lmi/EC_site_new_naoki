@@ -1,0 +1,34 @@
+<% @cart_items.each_with_index do |item,n| %>
+    <% if n == 0 %>
+    <div class = "row">
+    <div class="col-md-4">
+    
+    <%= link_to image_tag("image1.jpeg", class:"img-rounded",size: '250x250' ), "/products/#{item.product.id}" %>
+    </div>
+
+    <div class="col-md-4">
+        <%= link_to "hoge", "#" %>
+    </div>
+
+    <div class="col-md-4">
+        hoge
+    </div>
+
+    </div>
+    <br>
+    <% else %>
+    <div class = "row">
+    <div class="col-md-4">
+    <%= link_to image_tag("image1.jpeg", class:"img-rounded",size: '250x250' ), "/products/#{item.product.id}" %>
+    </div>
+    <div class="col-md-4">
+        
+    </div>
+    <div class="col-md-4">
+        
+    </div>
+    </div>
+    <br>
+    <% end %>
+    
+<% end %>

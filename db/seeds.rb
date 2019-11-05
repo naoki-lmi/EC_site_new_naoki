@@ -86,7 +86,7 @@ User.create!(name:  "Naoki Kishimoto",
     Cart.create!(user_id:  2)
     Cart.create!(user_id:  3)
  
-    3.times do |n|
+    5.times do |n|
         product_id =  rand(1..200)
         cart_id  = 1 #rand(1..100000)
         quantity = rand(1..5)
@@ -95,3 +95,14 @@ User.create!(name:  "Naoki Kishimoto",
                         cart_id: cart_id,
                         quantity: quantity)
       end
+
+      200.times do |n|
+        product_id = n+1
+        user_id = rand(1..200)
+        quantity = rand(1..10)
+        
+        Order.create!(product_id: product_id,
+                    user_id: user_id,
+                    quantity: quantity)
+      end
+    

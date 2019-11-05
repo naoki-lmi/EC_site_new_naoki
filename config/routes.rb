@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+
+  
+  #購入履歴周り
+  get 'orders/index'
+  resources :orders
+  
   #カート周り
+  resources :carts
   resources :cart_items
   #プロダクト周り
   root 'products#index'
