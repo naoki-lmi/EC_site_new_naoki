@@ -1,0 +1,54 @@
+        
+        <% @cart_items.each_with_index do |item,n| %>
+            <% if n == 0 %>
+            
+            <div class = "row">
+            <div class="col-md-4">
+            
+            <%= link_to image_tag("image1.jpeg", class:"img-rounded",size: '250x250' ), "/products/#{item.product.id}" %>
+            </div>
+
+            <div class="col-md-4">
+                <br><br><br><br>
+                商品名：<%= item.product.name %><br>
+                サイズ：<%= item.product.size.size %><br>
+                購入数：<%= item.quantity %><br>            
+                
+
+                
+            </div>
+
+            <div class="col-md-4">
+                <h2> 総額：<%= @cart_sum %>円 </h2><br>
+                <%= link_to "購入確定", orders_path, class: "btn btn-primary btn-lg", method: :post%><br><br>
+                <%= link_to "購入取り消し", cart_items_path, class: "btn btn-danger btn-lg" %><br><br>
+            </div>
+
+            </div>
+            <br>
+            <% else %>
+
+            <div class = "row">
+                <div class="col-md-4">
+                <%= link_to image_tag("image1.jpeg", class:"img-rounded",size: '250x250' ), "/products/#{item.product.id}" %>
+                </div>
+
+                <div class="col-md-4">
+                    <br><br><br><br>
+                    商品名：<%= item.product.name %><br>
+                    サイズ：<%= item.product.size.size %><br>
+                    購入数：<%= item.quantity %><br>
+                    
+                </div>
+
+                <div class="col-md-4">
+
+                </div>
+
+            </div>
+            <br>
+            <% end %>
+                    
+                    
+        <% end %>
+   

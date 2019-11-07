@@ -13,5 +13,34 @@ class OrdersController < ApplicationController
 
   end
 
+
+  def new
+    @cart = @current_cart
+    @cart_items = CartItem.where(cart_id: @cart.id)
+
+    array = []
+    @cart_items.each do |item|
+      array.push(item.quantity * item.product.price)
+    end
+    @cart_sum = array.sum
+
+  end
+
+  def create
+    begin
+      ActiveRecord::Base.transaction do
+        .
+        .
+        raise 'ロールバックします'
+      end
+    
+      p 'コミット' # トランザクション処理を確定
+    rescue => e
+      p 'ロールバック' # トランザクション処理を戻す
+    end
+    
+  
+  end
+
   
 end
