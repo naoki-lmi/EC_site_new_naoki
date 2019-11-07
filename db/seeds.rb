@@ -5,6 +5,12 @@ User.create!(name:  "Naoki Kishimoto",
   password_confirmation: "hogehoge",
   admin: true
   )
+  User.create!(name:  "hoge",
+    email: "hoge@hoge.com",
+    address: "hogefuga",
+    password: "hogehoge",
+    password_confirmation: "hogehoge"
+    )
 
   200.times do |n|
     name  = Faker::Name.name
@@ -82,19 +88,19 @@ User.create!(name:  "Naoki Kishimoto",
   end
 
 
-    Cart.create!(user_id:  1)
-    Cart.create!(user_id:  2)
-    Cart.create!(user_id:  3)
- 
-    5.times do |n|
-        product_id =  rand(1..200)
-        cart_id  = 1 #rand(1..100000)
-        quantity = rand(1..5)
-        
-        CartItem.create!(product_id: product_id,
-                        cart_id: cart_id,
-                        quantity: quantity)
-      end
+    #Cart.create!(user_id:  1)
+    #Cart.create!(user_id:  2)
+    #Cart.create!(user_id:  3)
+ #
+    #5.times do |n|
+    #    product_id =  rand(1..200)
+    #    cart_id  = 1 #rand(1..100000)
+    #    quantity = rand(1..5)
+    #    
+    #    CartItem.create!(product_id: product_id,
+    #                    cart_id: cart_id,
+    #                    quantity: quantity)
+    #  end
 
       200.times do |n|
         product_id = n+1
@@ -105,4 +111,20 @@ User.create!(name:  "Naoki Kishimoto",
                     user_id: user_id,
                     quantity: quantity)
       end
+
+      2.times do |n|
+        credit_number = 1234567812345678
+        expiration_date = "2020/03"
+        user_id = n+1
+        security_code = 123
+        
+        Credit.create!(credit_number: credit_number,
+                      expiration_date: expiration_date,
+                      security_code: security_code,
+                      user_id: user_id)
+      end
+
+
+
+
     

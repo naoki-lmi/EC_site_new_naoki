@@ -1,0 +1,22 @@
+<% provide(:title, "クレジット確認") %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+        <h1>購入画面</h1>
+        <h3>クレジットカード情報を記入して下さい</h3>
+        <%= form_tag()  %>
+
+          <%= label_tag :クレジットカードナンバー %>
+          <%= text_field_tag :credit_number %>
+
+          <%= label_tag :有効期限 %>
+          <%= text_field_tag :expiration_date %>
+
+          <%= label_tag :セキュリティコード %>
+          <%= password_field_tag :security_code %>
+
+
+          <%= submit_tag "購入確定画面へ", class: "btn btn-primary" %>
+        <br>
+  </div>
+</div>

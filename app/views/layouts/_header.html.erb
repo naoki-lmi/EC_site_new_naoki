@@ -1,22 +1,96 @@
+<style>
 
+.dropdown_multilayer_menu_sub {
+  position: absolute;
+  width: 210px;
+  background: #EEE; 
+ visibility: hidden;
+}
+.dropdown_multilayer_menu_third_sub {
+  position: absolute;
+  top: 0;
+  left: 210px;
+  width: 100%;
+  background: #CCC;
+  visibility: hidden;
+}
+.dropdown_multilayer_menu_third::after {
+  content: "\f0da";
+  font-family: "Font Awesome 5 Free"
+  font-weight: 400;  
+  position: absolute;
+  top: 8px;
+  right: 5px;
+}
+.dropdown_multilayer_menu_third {
+  position: relative;
+}
+.dropdown_multilayer_menu_third:hover 
+.dropdown_multilayer_menu_third_sub {
+  visibility: visible;
+}
+.dropdown_multilayer:hover 
+.dropdown_multilayer_menu_sub {
+  visibility: visible;
+ }
+}
+</style>
 
 
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to "Naokari", root_path, id: "logo" %>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-left">
         
         
         
         <% if logged_in? %>
+           <li><%= link_to "買い物かご", cart_items_path %></li>
+           
+           <li class="nav-item dropdown_multilayer">
+            <a class="nav-link dropdown_multilayer_menu" href="#">ジャンル</a>
+   
+             <ul class="nav flex-column dropdown_multilayer_menu_sub">
+                <li class="nav-item dropdown_multilayer_menu_third">
+                  <a class="nav-link" href="#">カテゴリ</a>
+                      <ul class="nav flex-column dropdown_multilayer_menu_third_sub">
+                            <% Category.all.each do |cate| %>
+                              <li class="nav-item">
+                              <div class="nav-link" >
+                              <%= link_to cate.category, categories_index_path(category_id: cate.id) %>
+                              </div>
+                              </li>
+                              <% end %>
+                              
+                      </ul>
+                </li>
+             
+                <li class="nav-item dropdown_multilayer_menu_third">
+                <a class="nav-link" href="#">ブランド</a>
+                  <ul class="nav flex-column dropdown_multilayer_menu_third_sub">
+                      <li class="nav-item">
+                      </li>
+                      <% Brand.all.each do |name| %>
+                      <li class="nav-item">          
+                      <div class="nav-link" >
+                      <%= link_to name.brand, brands_index_path(brand_id: name.id) %>
+                      </div>
+                      </li>
+                      <% end %>
+                      
+                  </ul>
+                </li>
+              </ul>
+
+          </li>
+
         <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-               お客様情報 <b class="caret"></b>
+               ようこそ<%= session[:user_name] %>様 <b class="caret"></b>
              </a>
              <ul class="dropdown-menu">
                <li><%= link_to "登録情報", current_user %></li>
-               <li><%= link_to "退会したい方へ", "#" %></li>
                <li class="divider"></li>
                <li>
                  <%= link_to "Log out", logout_path, method: :delete %>
@@ -24,35 +98,50 @@
                  <%= link_to "売り上げ", orders_path %>
                  <% end %>
                </li>
-             </ul>
-           </li>
-           <li><%= link_to "買い物かご", cart_items_path %></li>
-           
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              ジャンル別 <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              
-              <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
-              
             </ul>
-          </li>
+        </li>
+ 
+
+
         <% else %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              ジャンル別 <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
+        
+        <li class="nav-item dropdown_multilayer">
+        <a class="nav-link dropdown_multilayer_menu" href="#">ジャンル</a>
 
-              <li><%= link_to "Profile", "#" %></li>
-              <li><%= link_to "Settings", "#" %></li>
-              <li class="divider"></li>
+         <ul class="nav flex-column dropdown_multilayer_menu_sub">
+            <li class="nav-item dropdown_multilayer_menu_third">
+              <a class="nav-link" href="#">カテゴリ</a>
+                  <ul class="nav flex-column dropdown_multilayer_menu_third_sub">
+                        <% Category.all.each do |cate| %>
+                          <li class="nav-item">
+                          <div class="nav-link" >
+                          <%= link_to cate.category, categories_index_path(category_id: cate.id) %>
+                          </div>
+                          </li>
+                          <% end %>
+                          
+                  </ul>
+            </li>
+         
+            <li class="nav-item dropdown_multilayer_menu_third">
+            <a class="nav-link" href="#">ブランド</a>
+              <ul class="nav flex-column dropdown_multilayer_menu_third_sub">
+                  <li class="nav-item">
+                  </li>
+                  <% Brand.all.each do |name| %>
+                  <li class="nav-item">          
+                  <div class="nav-link" >
+                  <%= link_to name.brand, brands_index_path(brand_id: name.id) %>
+                  </div>
+                  </li>
+                  <% end %>
+                  
+              </ul>
+            </li>
+          </ul>
 
-            </ul>
-          </li>
+      </li>
+
 
           <li><%= link_to "Log in", login_path %></li>
           

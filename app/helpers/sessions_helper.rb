@@ -2,6 +2,7 @@ module SessionsHelper
     # 渡されたユーザーでログインする
     def log_in(user)
         session[:user_id] = user.id
+        session[:user_name] = user.name
     end
 
     # ユーザーのセッションを永続的にする
@@ -32,8 +33,10 @@ module SessionsHelper
 
     # ユーザーがログインしていればtrue、その他ならfalseを返す
     def logged_in?
-      !current_user.nil?
+      !current_user.nil? 
     end
+
+    
 
 
     #アドミンユーザのみに売り上げを表示したいため追加
@@ -52,6 +55,8 @@ module SessionsHelper
     def log_out
       forget(current_user)
       session.delete(:user_id)
+      session.delete(:cart_id)
+      session.delete(:user_name)
       @current_user = nil
     end
 

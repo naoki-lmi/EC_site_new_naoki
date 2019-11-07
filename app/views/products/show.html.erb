@@ -10,13 +10,18 @@
     サイズ：<%= @product.size.size %>  <br>
     ブランド：<%= @product.brand.brand %> <br>
     カテゴリ：<%= @product.category.category %> <br>
-    在庫：<%= @stock.stock %> <br>
+    在庫：
+    <% if @stock.stock == 0 %>
+        <font color="red">売り切れ</font>
+    <% else %>
+        <%= @stock.stock %> <br>
+    <% end %>
 
 </div>
 
 
 <div class="col-md-3">
-    <%= link_to "買い物カゴに入れる", cart_items_path(product_id: @product) %><br>
-    <%= link_to "お気に入り", "#" %>
-
+    <br><br><br>
+    <%= button_to "買い物カゴに入れる", cart_items_path(product_id: @product) %><br>
+    
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_073633) do
+ActiveRecord::Schema.define(version: 2019_11_07_054632) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "brand", limit: 30
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_11_05_073633) do
   create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "product_id"
-    t.integer "quantity", limit: 3
+    t.integer "quantity", limit: 3, default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 2019_11_05_073633) do
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "credit_number"
+    t.string "expiration_date", limit: 7
+    t.integer "security_code", limit: 3
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -103,6 +113,7 @@ ActiveRecord::Schema.define(version: 2019_11_05_073633) do
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.boolean "delete_flag", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -9,6 +9,8 @@ class Product < ApplicationRecord
 
     has_many :orders
 
+    has_one :stock
+
 
 
     def self.search(conditions, search) #ここでのself.
@@ -22,7 +24,7 @@ class Product < ApplicationRecord
           where(['categories.category  LIKE ?', "%#{search}%"]).joins(:category)
 
         else
-          all #全て表示。
+          where(['name  LIKE ?', "%#{search}%"]) 
         end
     end
 

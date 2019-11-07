@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   
+  get 'categories/index'
+  get 'brands/index'
+  resources :brands
   #購入履歴周り
   get 'orders/index'
   resources :orders
@@ -8,6 +11,10 @@ Rails.application.routes.draw do
   #カート周り
   resources :carts
   resources :cart_items
+  get '/cart_items', to: 'cart_items#index'
+  put '/cart_items', to: 'cart_items#update'
+  delete '/cart_items', to: 'cart_items#destroy'
+
   #プロダクト周り
   root 'products#index'
 
@@ -15,7 +22,8 @@ Rails.application.routes.draw do
   #ユーザー周り
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
-  
+  post  '/credit_confirm', to: 'users#credit_confirm'
+  get  '/credit_confirm', to: 'users#credit_user_input'
   resources :users
 
   #ログイン周り

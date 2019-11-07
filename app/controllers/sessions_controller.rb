@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
+    if user && user.authenticate(params[:session][:password]) && user.delete_flag == false
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_back_or root_path
     else
-      flash.now[:danger] = 'メールアドレスとパスワードが一致しません'
+      flash.now[:danger] = 'メールアドレスとパスワードが一致しません又は退会済みユーザーです'
       render 'new'
     end
   end

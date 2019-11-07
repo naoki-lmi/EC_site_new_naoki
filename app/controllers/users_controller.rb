@@ -1,12 +1,9 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  before_action :correct_user,   only: [:edit, :update, :destroy]
 
-  #あとでユーザの管理をする
-  def index
-    @users = User.all
-  end
+  
+  
 
 
 
@@ -46,10 +43,26 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "ユーザー情報を削除しました"
+    @user_flag = User.find(params[:id])
+    @user_flag.delete_flag = true
+    @user_flag.save!
+    log_out if logged_in?
+    flash[:success] = "ご利用ありがとうございました"
     redirect_to root_path
   end
+
+  def credit_confirm
+    @user = User.find(params[:user_id])
+
+  end
+
+  def confirm_user_input
+    @credit_confirm = Credit.find_by(user_id: session[:user_id])
+  end
+
+
+
+  
 
   private
 
