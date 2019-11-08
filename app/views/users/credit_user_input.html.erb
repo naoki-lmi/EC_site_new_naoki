@@ -4,7 +4,7 @@
   <div class="col-md-6 col-md-offset-3">
         <h1>購入画面</h1>
         <h3>クレジットカード情報を記入して下さい</h3>
-        <%= form_tag()  %>
+        <%= form_tag(credit_confirm_path)  %>
 
           <%= label_tag :クレジットカードナンバー %>
           <%= text_field_tag :credit_number %>

@@ -1,7 +1,7 @@
 class CartItemsController < ApplicationController
   def create
     product = Product.find(params[:product_id])
-    @cart_item = @current_cart.add_quantity(product.id)
+    @cart_item = @current_cart.add_cart(product.id)
     
 
     if @cart_item.save

@@ -57,7 +57,7 @@ module SessionsHelper
       session.delete(:user_id)
       session.delete(:cart_id)
       session.delete(:user_name)
-      @current_user = nil
+      
     end
 
 

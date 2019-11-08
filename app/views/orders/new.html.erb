@@ -20,6 +20,7 @@
 
             <div class="col-md-4">
                 <h2> 総額：<%= @cart_sum %>円 </h2><br>
+                <h4> お届け先：<%= @user.address %> </h4><br>
                 <%= link_to "購入確定", orders_path, class: "btn btn-primary btn-lg", method: :post%><br><br>
                 <%= link_to "購入取り消し", cart_items_path, class: "btn btn-danger btn-lg" %><br><br>
             </div>

@@ -14,27 +14,35 @@
                 商品名：<%= item.product.name %><br>
                 サイズ：<%= item.product.size.size %><br>
                 在庫数：<%= item.product.stock.stock %><br>
-                購入数：<%= item.quantity %><br>
                 <% if item.product.stock.stock == item.quantity and item.product.stock.stock == 1%>
-
+                    購入数：<%= item.quantity %><br>
                     <br>
                     <%= link_to "買い物カゴから削除",  cart_items_path(product_id: item.product_id), class: "btn btn-danger", method: :delete,
                             data: { confirm: '買い物カゴから削除してもよろしいですか？' } %>
+
                 <% elsif item.product.stock.stock == item.quantity  %>
+                購入数：<%= item.quantity %><br>
                     <%= link_to "-",  cart_items_path(judge: 0, product_id: item.product_id), class: "btn btn-warning", method: :put %> <br><br>
                     <%= link_to "買い物カゴから削除",  cart_items_path(product_id: item.product_id), class: "btn btn-danger", method: :delete,
                             data: { confirm: '買い物カゴから削除してもよろしいですか？' } %>
-                <% elsif item.quantity == 1 or  item.product.stock.stock == 1%>
+                <% elsif item.quantity == 1 %>
+                購入数：<%= item.quantity %><br>
                     <%= link_to "+",  cart_items_path(judge: 1, product_id: item.product_id), class: "btn btn-success", method: :put %><br><br>
                     <%= link_to "買い物カゴから削除",  cart_items_path(product_id: item.product_id), class: "btn btn-danger", method: :delete,
                             data: { confirm: '買い物カゴから削除してもよろしいですか？' } %><br>
+                <% elsif item.quantity < item.product.stock.stock  and  item.quantity == 1%>
+                    購入数：<%= item.quantity %><br>
+                    <%= link_to "+",  cart_items_path(judge: 1, product_id: item.product_id), class: "btn btn-success", method: :put %><br><br>
+                    <%= link_to "買い物カゴから削除",  cart_items_path(product_id: item.product_id), class: "btn btn-danger", method: :delete,
+                         data: { confirm: '買い物カゴから削除してもよろしいですか？' } %><br>
                 <% else %>
+                    購入数：<%= item.quantity %><br>
                     <%= link_to "-",  cart_items_path(judge: 0, product_id: item.product_id), class: "btn btn-warning", method: :put %>
                     <%= link_to "+",  cart_items_path(judge: 1, product_id: item.product_id), class: "btn btn-success", method: :put %><br><br>
                     <%= link_to "買い物カゴから削除",  cart_items_path(product_id: item.product_id), class: "btn btn-danger", method: :delete,
                             data: { confirm: '買い物カゴから削除してもよろしいですか？' } %><br>
-                <% end %>
 
+                 <% end %>
                 
                 
 
@@ -43,7 +51,7 @@
 
             <div class="col-md-4">
                 <h2> 総額：<%= @cart_sum %>円 </h2><br>
-                <%= link_to "レジへ進む", credit_confirm_path(user_id: session[:user_id]), class: "btn btn-primary btn-lg" %><br><br>
+                <%= link_to "レジへ進む", credit_confirm_path, class: "btn btn-primary btn-lg" %><br><br>
             </div>
 
             </div>
@@ -74,11 +82,19 @@
                         <%= link_to "+",  cart_items_path(judge: 1, product_id: item.product_id), class: "btn btn-success", method: :put %><br><br>
                         <%= link_to "買い物カゴから削除",  cart_items_path(product_id: item.product_id), class: "btn btn-danger", method: :delete,
                                 data: { confirm: '買い物カゴから削除してもよろしいですか？' } %><br>
+                    <% elsif item.quantity < item.product.stock.stock  and  item.quantity == 1%>
+                        購入数：<%= item.quantity %><br>
+                        <%= link_to "+",  cart_items_path(judge: 1, product_id: item.product_id), class: "btn btn-success", method: :put %><br><br>
+                        <%= link_to "買い物カゴから削除",  cart_items_path(product_id: item.product_id), class: "btn btn-danger", method: :delete,
+                             data: { confirm: '買い物カゴから削除してもよろしいですか？' } %><br>
                     <% else %>
                         <%= link_to "-",  cart_items_path(judge: 0, product_id: item.product_id), class: "btn btn-warning", method: :put %>
                         <%= link_to "+",  cart_items_path(judge: 1, product_id: item.product_id), class: "btn btn-success", method: :put %><br><br>
                         <%= link_to "買い物カゴから削除",  cart_items_path(product_id: item.product_id), class: "btn btn-danger", method: :delete,
                                 data: { confirm: '買い物カゴから削除してもよろしいですか？' } %><br>
+
+
+                     
                     <% end %>
                 </div>
 

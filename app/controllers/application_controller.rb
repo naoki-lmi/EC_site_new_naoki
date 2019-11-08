@@ -10,19 +10,28 @@ class ApplicationController < ActionController::Base
     
 
     private
-    def current_cart
-        if session[:cart_id]
-          cart = Cart.find_by(:id => session[:cart_id])
-          if cart.present?
-            @current_cart = cart
-          else
-            session[:cart_id] = nil
-          end
-        end
-  
-        if session[:cart_id] == nil
-          @current_cart = Cart.create(user_id: session[:user_id])
-          session[:cart_id] = @current_cart.id
-        end
-    end
+def current_cart
+  if cart = Cart.find_by(:user_id => session[:user_id])
+       @current_cart = cart
+  else
+      if session[:cart_id]
+         cart = Cart.find_by(:id => session[:cart_id])
+         if cart.present?
+           @current_cart = cart
+         else
+           session[:cart_id] = nil
+         end
+       
+      end
+     if cart == nil
+       @current_cart = Cart.create
+       @current_cart.user_id = session[:user_id]
+       @current_cart.save
+       session[:cart_id] = @current_cart.id
+     end
+  end
 end
+
+    
+end
+
