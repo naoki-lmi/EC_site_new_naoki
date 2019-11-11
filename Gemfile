@@ -22,6 +22,7 @@ gem 'mysql2',       '0.5.2'
 gem 'rb-readline'
 gem 'pry-rails'
 gem 'device'
+gem 'byebug'
 
 
 gem 'enumerize'

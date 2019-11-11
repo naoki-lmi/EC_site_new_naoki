@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :product do
-    id {}
     name  { "product" }
     price {1000}
     brand {FactoryBot.create(:brand)}
@@ -8,6 +7,10 @@ FactoryBot.define do
     size {FactoryBot.create(:size)}
     color {FactoryBot.create(:color)}
     image {FactoryBot.create(:image)}
+
+    after(:create) do |product|
+      create(:stock,  product: product)
+    end
 
 
   end
