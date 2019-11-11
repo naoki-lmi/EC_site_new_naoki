@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :image do
-    image { "MyString" }
+    id {}
+    image { "image_url" }
   end
 end

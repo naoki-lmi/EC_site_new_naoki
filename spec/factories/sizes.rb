@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :size do
-    size { "MyString" }
+    id {}
+    size { "L" }
   end
 end

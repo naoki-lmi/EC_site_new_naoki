@@ -21,7 +21,6 @@ def current_cart
          else
            session[:cart_id] = nil
          end
-       
       end
      if cart == nil
        @current_cart = Cart.create

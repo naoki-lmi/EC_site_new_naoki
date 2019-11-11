@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :color do
-    image { "" }
+    color { "black" }
   end
 end
